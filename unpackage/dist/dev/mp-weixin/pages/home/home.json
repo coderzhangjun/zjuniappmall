@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "购物街",
+  "navigationBarBackgroundColor": "rgb(255, 129, 152)",
+  "usingComponents": {
+    "home-swipe": "./cpns/home-swipe/home-swipe"
+  }
+}

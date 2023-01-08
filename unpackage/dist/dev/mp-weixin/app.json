@@ -1,0 +1,13 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/home/cpns/home-swipe/home-swipe"
+  ],
+  "window": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "购物街",
+    "navigationBarBackgroundColor": "rgb(255, 129, 152)",
+    "backgroundColor": "#F8F8F8"
+  },
+  "usingComponents": {}
+}

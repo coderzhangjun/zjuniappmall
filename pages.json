@@ -1,0 +1,27 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/home/home",
+			"style": {
+				"navigationBarTitleText": "购物街",
+				"navigationBarBackgroundColor": "rgb(255, 129, 152)"
+			}
+		}
+	    ,{
+            "path" : "pages/home/cpns/home-swipe/home-swipe",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "购物街",
+		"navigationBarBackgroundColor": "rgb(255, 129, 152)",
+		"backgroundColor": "#F8F8F8"
+	},
+	"uniIdRouter": {}
+}
