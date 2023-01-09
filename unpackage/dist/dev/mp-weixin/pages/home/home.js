@@ -12,5 +12,5 @@ const _sfc_main = {
     };
   }
 };
-const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "D:/uniapp\u9879\u76EE/hymall/hymall-zj/pages/home/home.vue"]]);
+const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "D:/test2023/mall/pages/home/home.vue"]]);
 wx.createPage(MiniProgramPage);

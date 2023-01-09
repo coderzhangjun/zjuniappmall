@@ -16,7 +16,7 @@
 	} from "vue";
 	import {
 		getSwipeData
-	} from "../../../../service/home-swipe";
+	} from "../../../../service/home";
 
 	const swipeUrl = ref()
 	getSwipeData().then(res => {
