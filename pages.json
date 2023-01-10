@@ -49,7 +49,15 @@
 			}
 
 		}
-	],
+	    ,{
+            "path" : "pages/home/cpns/shop/shop",
+            "style": {
+            	"navigationBarTitleText": "",
+            	"enablePullDownRefresh": true
+            }
+            
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "购物街",
