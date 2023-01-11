@@ -20,6 +20,7 @@ import { ref } from "vue";
 	let currentIndex = ref(0)
 	const itemClick = (index)=>{
 		currentIndex.value = index
+		uni.$emit('getCurrentIndex',index)
 	}
 </script>
 

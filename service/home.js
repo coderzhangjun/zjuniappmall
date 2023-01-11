@@ -4,6 +4,10 @@ export function getSwipeData() {
 	return ZJrequest.request('/home/multidata')
 }
 
-export function getShopData(){
-	return ZJrequest.request('/home/data?type=pop&page=1')
+export function getShopData(type,page){
+	console.log(type,page);
+	return ZJrequest.get('/home/data',{
+		type,
+		page
+		})
 }

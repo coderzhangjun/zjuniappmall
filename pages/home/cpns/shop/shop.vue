@@ -1,6 +1,6 @@
 <template>
 	<view class="shop">
-		<template v-for="(item,index) in props.shopDatas" :key="index">
+		<template v-for="(item,index) in shopDatas" :key="index">
 			<view class="item">
 				<view class="">
 					<image class="img" :src="item.showLarge.img" mode=""></image>
@@ -16,19 +16,18 @@
 	</view>
 </template>
 
-
-<script setup>
-	import {onPullDownRefresh,onReachBottom} from "@dcloudio/uni-app"
-	const props = defineProps({
-		shopDatas: {
-			default: {},
-			type: Object
+<script>
+	export default({
+		props:{
+			shopDatas: {
+				default: {},
+				type: Object
+			}
+		},
+		onPullDownRefresh() {
+			console.log(1111);
 		}
 	})
-	onPullDownRefresh(){
-		console.log(222);
-	}
-	
 </script>
 
 <style lang="less">
