@@ -1,7 +1,7 @@
 <template>
 	<view class="swipe">
 		<swiper :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000">
-			<template v-for="(item,index) in swipeUrl"> 
+			<template v-for="(item,index) in swipeUrl">
 				<swiper-item>
 					<image :src=item.image mode="widthFix"></image>
 				</swiper-item>
@@ -26,7 +26,7 @@
 </script>
 
 <style lang="scss">
-	image{
+	image {
 		width: 100%;
 	}
 </style>

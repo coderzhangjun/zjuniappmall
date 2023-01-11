@@ -1,0 +1,15 @@
+.tabcontrol {
+  display: flex;
+}
+.tabcontrol .item {
+  flex: 1;
+  text-align: center;
+}
+.tabcontrol .item text {
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 8rpx ;
+}
+.tabcontrol .item .select {
+  border-bottom: 4rpx solid red;
+}

@@ -1,0 +1,32 @@
+.shop {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 20rpx;
+}
+.item {
+  width: 48%;
+}
+.item .img {
+  border-radius: 6rpx;
+  width: 100%;
+}
+.item .desc {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.item .bottom {
+  text-align: center;
+}
+.item .bottom .price {
+  color: #FF5777;
+}
+.item .bottom image {
+  display: inline-block;
+  margin: 0 4rpx;
+  position: relative;
+  top: 3rpx;
+  width: 32rpx;
+  height: 32rpx;
+}

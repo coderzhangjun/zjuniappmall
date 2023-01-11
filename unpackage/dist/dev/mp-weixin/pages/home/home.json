@@ -1,7 +1,11 @@
 {
   "navigationBarTitleText": "购物街",
-  "navigationBarBackgroundColor": "rgb(255, 129, 152)",
+  "navigationBarBackgroundColor": "#FF8198",
+  "enablePullDownRefresh": true,
   "usingComponents": {
-    "home-swipe": "./cpns/home-swipe/home-swipe"
+    "home-swipe": "./cpns/home-swipe/home-swipe",
+    "tab-control": "../../components/tab-control/tab-control",
+    "recommend": "./cpns/recommend/recommend",
+    "shop": "./cpns/shop/shop"
   }
 }

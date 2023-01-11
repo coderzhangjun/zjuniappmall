@@ -1,0 +1,1 @@
+<view class="recommend"><block wx:for="{{a}}" wx:for-item="item" wx:key="b"><image src="{{item.a}}"></image></block></view>

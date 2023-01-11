@@ -4,7 +4,7 @@
 			"path": "pages/home/home",
 			"style": {
 				"navigationBarTitleText": "购物街",
-				"navigationBarBackgroundColor": "rgb(255, 129, 152)",
+				"navigationBarBackgroundColor": "#FF8198",
 				"enablePullDownRefresh": true
 			}
 		}, {
@@ -62,7 +62,7 @@
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "购物街",
-		"navigationBarBackgroundColor": "rgb(255, 129, 152)",
+		"navigationBarBackgroundColor": "#FF8198",
 		"backgroundColor": "#F8F8F8"
 	},
 	"tabBar": {

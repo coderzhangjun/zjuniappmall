@@ -9,7 +9,8 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+
+import { ref ,watch} from "vue";
 	const barDatas = defineProps({
 		barlist:{
 			default:[],
@@ -18,10 +19,16 @@ import { ref } from "vue";
 	})
 	
 	let currentIndex = ref(0)
+	
 	const itemClick = (index)=>{
 		currentIndex.value = index
-		uni.$emit('getCurrentIndex',index)
+		
 	}
+	watch(currentIndex,(newvalue)=>{
+		uni.$emit('getCurrentIndex',newvalue)
+	})
+		
+	
 </script>
 
 <style lang="less">

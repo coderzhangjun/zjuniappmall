@@ -1,11 +1,11 @@
 "use strict";
 const common_vendor = require("./common/vendor.js");
-const service_homeSwipe = require("./service/home-swipe.js");
+const service_home = require("./service/home.js");
 const _sfc_main = {
   __name: "home-swipe",
   setup(__props) {
     const swipeUrl = common_vendor.ref();
-    service_homeSwipe.getSwipeData().then((res) => {
+    service_home.getSwipeData().then((res) => {
       swipeUrl.value = res.data.data.banner.list;
       console.log(swipeUrl.value);
     });
