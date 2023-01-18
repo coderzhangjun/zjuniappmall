@@ -31,7 +31,7 @@
 		}, {
 			"path": "pages/category/category",
 			"style": {
-				"navigationBarTitleText": "",
+				"navigationBarTitleText": "购物街",
 				"enablePullDownRefresh": false
 			}
 

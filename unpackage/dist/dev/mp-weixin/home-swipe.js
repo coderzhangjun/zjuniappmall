@@ -20,5 +20,5 @@ const _sfc_main = {
     };
   }
 };
-const Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "D:/uniappdemo/pages/home/cpns/home-swipe/home-swipe.vue"]]);
+const Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "D:/test2023/mall/pages/home/cpns/home-swipe/home-swipe.vue"]]);
 exports.Component = Component;

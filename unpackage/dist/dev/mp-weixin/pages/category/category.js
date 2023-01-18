@@ -3,6 +3,7 @@ require("../../store/index.js");
 const common_vendor = require("../../common/vendor.js");
 require("../../service/category.js");
 require("../../service/index.js");
+const topLists = () => "./cpns/topLists.js";
 const _sfc_main = {
   data() {
     return {
@@ -13,17 +14,26 @@ const _sfc_main = {
       maitKey: 3627
     };
   },
+  components: {
+    topLists
+  },
   created() {
     this.$store.commit("add");
     this.$store.dispatch("directorySecondData", this.maitKey);
+    console.log(this.maitKey);
   },
   methods: {
     itemClick(maitKey) {
       this.maitKey = maitKey;
-      this.$store.dispatch("directorySecondData", maitKey);
+      console.log(maitKey);
+      this.$store.dispatch("directorySecondData", this.maitKey);
     }
   }
 };
+if (!Array) {
+  const _component_top_lists = common_vendor.resolveComponent("top-lists");
+  _component_top_lists();
+}
 function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   return {
     a: common_vendor.f(this.$store.state.directoryDatas, (item, index, i0) => {
@@ -34,15 +44,8 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
       };
     }),
     b: $data.scrollTop,
-    c: common_vendor.f(this.$store.state.directorySecondDatas, (item, index, i0) => {
-      return {
-        a: item.image,
-        b: common_vendor.t(item.title),
-        c: item.acm
-      };
-    }),
-    d: $data.scrollTop
+    c: $data.scrollTop
   };
 }
-const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "D:/uniappdemo/pages/category/category.vue"]]);
+const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "D:/test2023/mall/pages/category/category.vue"]]);
 wx.createPage(MiniProgramPage);

@@ -1,0 +1,15 @@
+.top-lists {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.top-lists .item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: calc(50% - 16rpx);
+}
+.top-lists .item .image {
+  width: 128rpx;
+  height: 128rpx;
+}

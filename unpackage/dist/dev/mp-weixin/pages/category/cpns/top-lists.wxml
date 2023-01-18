@@ -1,0 +1,1 @@
+<view class="top-lists"><block wx:for="{{a}}" wx:for-item="item" wx:key="c"><view class="item"><image src="{{item.a}}" mode="aspectFit"></image><view>{{item.b}}</view></view></block></view>

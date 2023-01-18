@@ -1133,14 +1133,14 @@ function initWrapper(protocols2) {
   };
 }
 const getLocale = () => {
-  const app = getApp({ allowDefault: true });
+  const app = isFunction(getApp) && getApp({ allowDefault: true });
   if (app && app.$vm) {
     return app.$vm.$locale;
   }
   return normalizeLocale(wx.getSystemInfoSync().language) || LOCALE_EN;
 };
 const setLocale = (locale) => {
-  const app = getApp();
+  const app = isFunction(getApp) && getApp();
   if (!app) {
     return false;
   }
@@ -1209,8 +1209,8 @@ function populateParameters(fromRes, toRes) {
     appVersion: "1.0.0",
     appVersionCode: "100",
     appLanguage: getAppLanguage(hostLanguage),
-    uniCompileVersion: "3.6.15",
-    uniRuntimeVersion: "3.6.15",
+    uniCompileVersion: "3.6.16",
+    uniRuntimeVersion: "3.6.16",
     uniPlatform: "mp-weixin",
     deviceBrand,
     deviceModel: model,
@@ -1394,7 +1394,7 @@ const baseApis = {
   offPushMessage,
   invokePushCallback
 };
-function initUni(api, protocols2) {
+function initUni(api, protocols2, platform = wx) {
   const wrapper = initWrapper(protocols2);
   const UniProxyHandlers = {
     get(target, key) {
@@ -1407,7 +1407,7 @@ function initUni(api, protocols2) {
       if (hasOwn(baseApis, key)) {
         return promisify(key, baseApis[key]);
       }
-      return promisify(key, wrapper(key, wx[key]));
+      return promisify(key, wrapper(key, platform[key]));
     }
   };
   return new Proxy({}, UniProxyHandlers);
@@ -1431,6 +1431,29 @@ function initGetProvider(providers) {
     isFunction(complete) && complete(res);
   };
 }
+const objectKeys = [
+  "env",
+  "error",
+  "version",
+  "lanDebug",
+  "cloud",
+  "serviceMarket",
+  "router",
+  "worklet"
+];
+function initWx() {
+  const WxProxyHandlers = {
+    get(target, key) {
+      if (hasOwn(target, key)) {
+        return target[key];
+      }
+      if (objectKeys.indexOf(key) > -1 || isFunction(wx[key])) {
+        return wx[key];
+      }
+    }
+  };
+  return new Proxy({}, WxProxyHandlers);
+}
 const mocks$1 = ["__route__", "__wxExparserNodeId__", "__wxWebviewId__"];
 const getProvider = initGetProvider({
   oauth: ["weixin"],
@@ -1446,17 +1469,21 @@ function initComponentMocks(component) {
   return res;
 }
 function createSelectorQuery() {
-  const query = wx.createSelectorQuery();
+  const query = wx$2.createSelectorQuery();
   const oldIn = query.in;
   query.in = function newIn(component) {
     return oldIn.call(this, initComponentMocks(component));
   };
   return query;
 }
+const wx$2 = initWx();
+const host = wx$2.getAppBaseInfo().host;
+const shareVideoMessage = host && host.env === "SAAASDK" ? wx$2.miniapp.shareVideoMessage : wx$2.shareVideoMessage;
 var shims = /* @__PURE__ */ Object.freeze({
   __proto__: null,
   getProvider,
-  createSelectorQuery
+  createSelectorQuery,
+  shareVideoMessage
 });
 var protocols = /* @__PURE__ */ Object.freeze({
   __proto__: null,
@@ -1470,7 +1497,8 @@ var protocols = /* @__PURE__ */ Object.freeze({
   getWindowInfo,
   getAppAuthorizeSetting
 });
-var index = initUni(shims, protocols);
+const wx$1 = initWx();
+var index = initUni(shims, protocols, wx$1);
 function warn(msg, ...args) {
   console.warn(`[Vue warn] ${msg}`, ...args);
 }
@@ -5603,7 +5631,7 @@ function initRuntimeHooks(mpOptions, runtimeHooks) {
 }
 const findMixinRuntimeHooks = /* @__PURE__ */ once(() => {
   const runtimeHooks = [];
-  const app = getApp({ allowDefault: true });
+  const app = isFunction(getApp) && getApp({ allowDefault: true });
   if (app && app.$vm && app.$vm.$) {
     const mixins = app.$vm.$.appContext.mixins;
     if (isArray(mixins)) {
@@ -5671,9 +5699,11 @@ function initCreateApp(parseAppOptions) {
 function initCreateSubpackageApp(parseAppOptions) {
   return function createApp2(vm) {
     const appOptions = parseApp(vm, parseAppOptions);
-    const app = getApp({
+    const app = isFunction(getApp) && getApp({
       allowDefault: true
     });
+    if (!app)
+      return;
     vm.$.ctx.$scope = app;
     const globalData = app.globalData;
     if (globalData) {

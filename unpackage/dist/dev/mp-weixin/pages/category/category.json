@@ -1,5 +1,7 @@
 {
-  "navigationBarTitleText": "",
+  "navigationBarTitleText": "购物街",
   "enablePullDownRefresh": false,
-  "usingComponents": {}
+  "usingComponents": {
+    "top-lists": "./cpns/topLists"
+  }
 }

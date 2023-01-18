@@ -2,18 +2,15 @@
 	<view class="category">
 		<scroll-view class="left scroll-Y" :scroll-top="scrollTop" scroll-y="true">
 			<template v-for="(item,index) in this.$store.state.directoryDatas" :key="item.miniWallkey">
-				<view class="scroll-view-item uni-bg-green" @click="itemClick(item.maitKey)">
+				<view class="title scroll-view-item uni-bg-green" @click="itemClick(item.maitKey)">
 					{{item.title}}
 				</view>
 			</template>
 		</scroll-view>
 		<scroll-view class="right scroll-Y" :scroll-top="scrollTop" scroll-y="true">
-			<template v-for="(item,index) in this.$store.state.directorySecondDatas" :key="item.acm">
-				<view class="item scroll-view-item uni-bg-green">
-					<image :src="item.image" mode="aspectFit"></image>
-					<view>{{item.title}}</view>
-				</view>
-			</template>
+			<view class="scroll-view-item uni-bg-green">
+				<top-lists></top-lists>
+			</view>
 		</scroll-view>
 
 	</view>
@@ -21,6 +18,7 @@
 
 <script>
 	import store from '@/store/index.js';
+	import topLists from '@/pages/category/cpns/topLists.vue'
 	export default {
 		data() {
 			return {
@@ -31,14 +29,19 @@
 				maitKey: 3627,
 			}
 		},
+		components: {
+			topLists
+		},
 		created() {
 			this.$store.commit('add')
 			this.$store.dispatch('directorySecondData', this.maitKey)
+			console.log(this.maitKey);
 		},
 		methods: {
 			itemClick(maitKey) {
 				this.maitKey = maitKey
-				this.$store.dispatch('directorySecondData', maitKey)
+				console.log(maitKey);
+				this.$store.dispatch('directorySecondData', this.maitKey)
 			}
 		}
 	}
@@ -49,69 +52,29 @@
 		height: 100%;
 	}
 
-
-
-	.scroll-view-item {
-		// height: 300rpx;
-		// line-height: 300rpx;
-		text-align: center;
-		font-size: 36rpx;
-	}
-
-
+	// .scroll-view-item {
+	// 	height: 300rpx;
+	// 	line-height: 300rpx;
+	// 	text-align: center;
+	// 	font-size: 36rpx;
+	// }
 
 	.category {
 		display: flex;
-		width: 100%;
 
 		.left {
-			width: 160rpx;
+			width: 20%;
+
+			.title {
+				height: 150rpx;
+				line-height: 150rpx;
+				text-align: center;
+				font-size: 36rpx;
+				background-color: beige;
+			}
 		}
-
-		.right {
-			flex: 1;
-			display: flex;
-			flex-wrap: wrap;
-			width: 100%;
-			// background-color: red;
-			.item {
-				display: flex;
-				flex-direction: column;
-				// justify-content: center;
-				align-items: center;
-				width: 150rpx;
-			}
-
-			image {
-				display: inline-block;
-				width: 128rpx;
-				height: 128rpx;
-			}
+		.right{
+			width: 80%;
 		}
 	}
-
-	// .category {
-	// 	display: flex;
-
-	// 	// .left{
-	// 	// 	width: 60rpx;
-	// 	// }
-	// 	// .right {
-	// 	// 	flex: 1;
-
-	// 		.item {
-	// 			display: flex;
-	// 			flex-direction: column;
-	// 			justify-content: center;
-
-	// 			// align-items: center;
-	// 			image {
-	// 				width: 128rpx;
-	// 				height: 128rpx;
-	// 			}
-	// 		}
-
-	// 		// }
-
-	// 	}
 </style>
