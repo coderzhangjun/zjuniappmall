@@ -3,23 +3,33 @@ import {
 	createStore
 } from 'vuex'
 import {
-	getDirectoryData
+	getDirectoryData,
+	getDirectorySecondData
 } from '../service/category.js'
 const store = createStore({
 	state: {
-		directoryDatas: []
+		directoryDatas: [],
+		directorySecondDatas:[]
 	},
 	mutations: {
 		add(state) {
 			getDirectoryData().then(res => {
 				state.directoryDatas = res.data.data.category.list
 			})
-			// state.count += 2
+		},
+		addSecond(state,newDatas){
+			state.directorySecondDatas = newDatas
+			console.log(state.directorySecondDatas);
 		}
 	},
 	actions: {
-		addCountAction(context) {
-			context.commit('add')
+		directorySecondData(context,maitKey) {
+			getDirectorySecondData(maitKey).then(res=>{
+				// state.directorySecondDatas = res.data.list
+				context.commit('addSecond',res.data.data.list)
+				
+			})
+			// 
 		}
 	}
 })

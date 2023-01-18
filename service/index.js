@@ -18,7 +18,6 @@ class ZJrequest {
 		})
 	}
 	get(url,params){
-		console.log(params);
 		return this.request(url,"GET",params)
 	}
 	post(url,params){

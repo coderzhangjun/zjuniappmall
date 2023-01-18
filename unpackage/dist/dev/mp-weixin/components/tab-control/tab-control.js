@@ -31,5 +31,5 @@ const _sfc_main = {
     };
   }
 };
-const Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "D:/test2023/mall/components/tab-control/tab-control.vue"]]);
+const Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "D:/uniappdemo/components/tab-control/tab-control.vue"]]);
 wx.createComponent(Component);

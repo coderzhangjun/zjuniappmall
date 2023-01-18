@@ -1,15 +1,18 @@
 <template>
-	<view>
-		<scroll-view :scroll-top="scrollTop" scroll-y="true" class="scroll-Y" @scrolltoupper="upper"
-			@scrolltolower="lower" @scroll="scroll">
-			{{directoryDatas}}
-			<!-- <template v-for="(item,index) in directoryDatas" :key="item.miniWallkey">
-				<view class="scroll-view-item uni-bg-green">
+	<view class="category">
+		<scroll-view class="left scroll-Y" :scroll-top="scrollTop" scroll-y="true">
+			<template v-for="(item,index) in this.$store.state.directoryDatas" :key="item.miniWallkey">
+				<view class="scroll-view-item uni-bg-green" @click="itemClick(item.maitKey)">
 					{{item.title}}
 				</view>
-			</template> -->
-			<template v-for="item in directoryDatas">
-				{{item}}
+			</template>
+		</scroll-view>
+		<scroll-view class="right scroll-Y" :scroll-top="scrollTop" scroll-y="true">
+			<template v-for="(item,index) in this.$store.state.directorySecondDatas" :key="item.acm">
+				<view class="item scroll-view-item uni-bg-green">
+					<image :src="item.image" mode="aspectFit"></image>
+					<view>{{item.title}}</view>
+				</view>
 			</template>
 		</scroll-view>
 
@@ -17,7 +20,7 @@
 </template>
 
 <script>
-	
+	import store from '@/store/index.js';
 	export default {
 		data() {
 			return {
@@ -25,33 +28,17 @@
 				old: {
 					scrollTop: 0
 				},
-				directoryDatas: []
+				maitKey: 3627,
 			}
 		},
-		onLoad() {
-			console.log(this.$store.state.directoryDatas);
+		created() {
+			this.$store.commit('add')
+			this.$store.dispatch('directorySecondData', this.maitKey)
 		},
 		methods: {
-			upper: function(e) {
-				console.log(e)
-			},
-			lower: function(e) {
-				console.log(e)
-			},
-			scroll: function(e) {
-				console.log(e)
-				this.old.scrollTop = e.detail.scrollTop
-			},
-			goTop: function(e) {
-				// 解决view层不同步的问题
-				this.scrollTop = this.old.scrollTop
-				this.$nextTick(function() {
-					this.scrollTop = 0
-				});
-				uni.showToast({
-					icon: "none",
-					title: "纵向滚动 scrollTop 值已被修改为 0"
-				})
+			itemClick(maitKey) {
+				this.maitKey = maitKey
+				this.$store.dispatch('directorySecondData', maitKey)
 			}
 		}
 	}
@@ -62,24 +49,69 @@
 		height: 100%;
 	}
 
-	.scroll-view_H {
-		white-space: nowrap;
-		width: 100%;
-	}
+
 
 	.scroll-view-item {
-		height: 300rpx;
-		line-height: 300rpx;
+		// height: 300rpx;
+		// line-height: 300rpx;
 		text-align: center;
 		font-size: 36rpx;
 	}
 
-	.scroll-view-item_H {
-		display: inline-block;
+
+
+	.category {
+		display: flex;
 		width: 100%;
-		height: 300rpx;
-		line-height: 300rpx;
-		text-align: center;
-		font-size: 36rpx;
+
+		.left {
+			width: 160rpx;
+		}
+
+		.right {
+			flex: 1;
+			display: flex;
+			flex-wrap: wrap;
+			width: 100%;
+			// background-color: red;
+			.item {
+				display: flex;
+				flex-direction: column;
+				// justify-content: center;
+				align-items: center;
+				width: 150rpx;
+			}
+
+			image {
+				display: inline-block;
+				width: 128rpx;
+				height: 128rpx;
+			}
+		}
 	}
+
+	// .category {
+	// 	display: flex;
+
+	// 	// .left{
+	// 	// 	width: 60rpx;
+	// 	// }
+	// 	// .right {
+	// 	// 	flex: 1;
+
+	// 		.item {
+	// 			display: flex;
+	// 			flex-direction: column;
+	// 			justify-content: center;
+
+	// 			// align-items: center;
+	// 			image {
+	// 				width: 128rpx;
+	// 				height: 128rpx;
+	// 			}
+	// 		}
+
+	// 		// }
+
+	// 	}
 </style>

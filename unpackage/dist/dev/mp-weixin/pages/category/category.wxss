@@ -1,0 +1,31 @@
+.scroll-Y {
+  height: 100%;
+}
+.scroll-view-item {
+  text-align: center;
+  font-size: 36rpx;
+}
+.category {
+  display: flex;
+  width: 100%;
+}
+.category .left {
+  width: 160rpx;
+}
+.category .right {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.category .right .item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 150rpx;
+}
+.category .right image {
+  display: inline-block;
+  width: 128rpx;
+  height: 128rpx;
+}

@@ -1,6 +1,9 @@
 "use strict";
 Object.defineProperties(exports, { __esModule: { value: true }, [Symbol.toStringTag]: { value: "Module" } });
 const common_vendor = require("./common/vendor.js");
+const store_index = require("./store/index.js");
+require("./service/category.js");
+require("./service/index.js");
 if (!Math) {
   "./pages/home/home.js";
   "./pages/home/cpns/home-swipe/home-swipe.js";
@@ -22,9 +25,10 @@ const _sfc_main = {
     console.log("App Hide");
   }
 };
-const App = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "D:/test2023/mall/App.vue"]]);
+const App = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "D:/uniappdemo/App.vue"]]);
 function createApp() {
   const app = common_vendor.createSSRApp(App);
+  app.use(store_index.store);
   return {
     app
   };
